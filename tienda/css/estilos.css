@@ -32,7 +32,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 60px;
+      flex-wrap: wrap;
+      gap: 10px 30px;
+      padding: 10px clamp(15px, 4vw, 60px);
     }
 
     .logo {
@@ -42,20 +44,22 @@
     }
 
     .logo img {
-      width: 95px;
-      height: 95px;
+      width: clamp(55px, 8vw, 95px);
+      height: clamp(55px, 8vw, 95px);
     }
 
     .logo span {
       font-family: "Hanken Grotesk", Verdana, Geneva, Tahoma, sans-serif;
-      font-size: 52px;
+      font-size: clamp(28px, 4.5vw, 52px);
       font-weight: bold;
       color: #3d3d3d;
-      margin-left: 30px;
+      margin-left: clamp(12px, 2.5vw, 30px);
     }
 
     .menu {
-      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px clamp(20px, 4vw, 60px);
     }
 
     .menu a {
@@ -64,7 +68,6 @@
       text-decoration: none;
       font-size: 19px;
       letter-spacing: 1px;
-      margin-left: 60px;
     }
 
     .menu a:hover,
@@ -87,23 +90,23 @@
 
     .contenedor {
       border: 1px solid #555555;
-      margin: -10px 60px 30px;
-      padding: 30px 45px;
+      margin: -10px clamp(15px, 4vw, 60px) 30px;
+      padding: clamp(20px, 3vw, 30px) clamp(15px, 3.5vw, 45px);
       min-height: 600px;
     }
 
     .titulo {
       font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 34px;
+      font-size: clamp(24px, 3vw, 34px);
       font-weight: 600;
-      letter-spacing: 6px;
+      letter-spacing: clamp(3px, 0.5vw, 6px);
       text-transform: uppercase;
       margin: 0 0 25px;
     }
 
     .subtitulo {
       font-family: "Hanken Grotesk", Verdana, Geneva, Tahoma, sans-serif;
-      font-size: 42px;
+      font-size: clamp(28px, 3.5vw, 42px);
       font-weight: bold;
       color: #3d3d3d;
       margin: 0;
@@ -111,11 +114,12 @@
 
     .letras-grandes {
       font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 60px;
+      font-size: clamp(26px, 3.5vw, 60px);
       font-weight: 600;
-      letter-spacing: 12px;
+      letter-spacing: clamp(4px, 0.7vw, 12px);
       text-transform: uppercase;
-      margin: 40px 0;
+      overflow-wrap: anywhere;
+      margin: clamp(15px, 3vw, 40px) 0;
     }
 
 
@@ -144,14 +148,25 @@
     }
 
     .tarjeta-imagen img.dibujo {
-      width: 150px;
-      height: 150px;
+      width: clamp(90px, 12vw, 150px);
+      height: clamp(90px, 12vw, 150px);
+      flex-shrink: 0;
     }
 
     .tarjeta-imagen p {
-      font-size: 22px;
+      font-size: clamp(17px, 1.8vw, 22px);
       text-align: justify;
       margin: 0;
+    }
+
+    .tarjeta-imagen ul {
+      font-size: clamp(17px, 1.8vw, 22px);
+      margin: 0;
+      padding-left: 25px;
+    }
+
+    .tarjeta-imagen li {
+      margin: 8px 0;
     }
 
 
@@ -168,6 +183,7 @@
     .boton-grande {
       position: relative;
       flex: 1;
+      min-width: 0;
       background-color: #f7f4f1;
       border: 3px solid #2b2b2b;
       border-radius: 30px;
@@ -176,9 +192,9 @@
       text-decoration: none;
       color: #2b2b2b;
       font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 46px;
+      font-size: clamp(26px, 3.2vw, 46px);
       font-weight: 600;
-      letter-spacing: 8px;
+      letter-spacing: clamp(3px, 0.6vw, 8px);
     }
 
     .boton-grande:hover {
@@ -190,7 +206,8 @@
 
     .acerca {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-auto-flow: dense;   /* permite el zigzag título/tarjeta */
       gap: 30px;
       align-items: center;
     }
@@ -199,15 +216,17 @@
       text-align: right;
     }
 
-    .centrado {
-      text-align: center;
+    /* El título va a la derecha y su tarjeta ocupa la columna izquierda */
+    .acerca .derecha {
+      grid-column: 2;
     }
 
-    .parrafo {
-      font-size: 22px;
-      text-align: justify;
-      width: 70%;
-      margin: 30px auto 0;
+    .acerca .derecha + .tarjeta {
+      grid-column: 1;
+    }
+
+    .centrado {
+      text-align: center;
     }
 
 
@@ -225,7 +244,8 @@
     }
 
     input[type="text"], input[type="number"], select {
-      width: 80%;
+      width: 100%;
+      max-width: 450px;
       padding: 8px;
       margin-top: 5px;
       margin-bottom: 15px;
@@ -286,6 +306,7 @@
 
     .filtro select {
       width: 300px;
+      max-width: 100%;
       margin: 0;
     }
 
@@ -346,6 +367,7 @@
 
     .producto-info {
       flex: 1;
+      min-width: 0;
     }
 
     .producto-info h3 {
@@ -410,26 +432,98 @@
     }
 
 
-/* ========== PANTALLAS PEQUEÑAS ========== */
+/* ========== PANTALLAS MEDIANAS (tablet / laptop pequeña) ========== */
+
+    @media (max-width: 1100px) {
+      /* Acerca de: una sola columna, cada título arriba de su tarjeta */
+      .acerca {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 15px;
+      }
+      .acerca .derecha,
+      .acerca .derecha + .tarjeta {
+        grid-column: 1;
+      }
+      .derecha {
+        text-align: left;
+      }
+      .acerca .tarjeta {
+        margin-bottom: 25px;
+      }
+    }
 
     @media (max-width: 900px) {
-      .encabezado, .inicio, .producto, .filtro {
-        flex-direction: column;
+      .encabezado {
+        justify-content: center;
       }
-      .acerca, .formulario {
-        grid-template-columns: 1fr;
+      .menu {
+        justify-content: center;
+      }
+      .inicio {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 25px;
+        min-height: auto;
+        padding: 20px 0;
+      }
+      .formulario {
+        grid-template-columns: minmax(0, 1fr);
       }
       .formulario .botones {
         grid-column: 1;
       }
-      .contenedor {
-        margin: 0 15px 30px;
-        padding: 20px;
+      .producto {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 45px 20px 20px;
       }
-      .menu a {
-        margin: 0 10px;
+      .producto-acciones {
+        text-align: left;
       }
-      .letras-grandes {
-        font-size: 36px;
+      .filtro {
+        flex-wrap: wrap;
+        padding: 45px 20px 20px;
+      }
+      .filtro select {
+        flex: 1;
+        min-width: 180px;
+      }
+    }
+
+
+/* ========== CELULARES ========== */
+
+    @media (max-width: 600px) {
+      body {
+        padding-bottom: 70px;
+      }
+      .tarjeta {
+        border-radius: 20px;
+        padding: 40px 18px 18px;
+      }
+      .tarjeta-imagen {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .tarjeta-imagen p {
+        text-align: left;
+      }
+      .ola {
+        height: 70px;
+        background-size: 140px 70px;
+      }
+      .formulario .tarjeta {
+        padding: 45px 18px 15px;
+      }
+      .formulario h3 {
+        font-size: 21px;
+        letter-spacing: 2px;
+      }
+      .producto-info span {
+        display: block;
+        margin: 3px 0;
+      }
+      .pie p {
+        font-size: 12px;
       }
     }
