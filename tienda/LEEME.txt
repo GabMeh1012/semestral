@@ -23,5 +23,8 @@ tienda/
   includes/conexion.php   Conexión PDO a la BD semestral
   includes/header.php     Encabezado y menú (se repite en todas las páginas)
   includes/footer.php     Pie de página
-  css/estilos.css    Hoja de estilos
+  includes/funciones.php  Función icono(): elige el dibujo según la descripción
+  css/estilos.css    Hoja de estilos (diseño ElectroHogar)
+  img/               Logo, dibujos de productos, corazón, textura de papel y ola
+                     (puede reemplazarlos por sus imágenes de Canva con el mismo nombre)
   sql/semestral.sql  Script de la base de datos
