@@ -1,0 +1,27 @@
+PROYECTO SEMESTRAL - TIENDA DE ELECTRODOMÉSTICOS (PHP + MySQL + XAMPP)
+
+PASOS PARA EJECUTARLO
+1. Abra el panel de control de XAMPP y dé Start a Apache y MySQL.
+2. Copie la carpeta "tienda" dentro de C:\xampp\htdocs\
+3. Entre a http://localhost/phpmyadmin/ -> pestaña SQL -> pegue el contenido
+   de sql/semestral.sql y presione Continuar (crea la BD "semestral",
+   las tablas productos y proveedor y algunos datos de prueba).
+   (O use la pestaña Importar y seleccione el archivo semestral.sql)
+4. Si su MySQL tiene contraseña, colóquela en includes/conexion.php ($dbpass).
+5. Abra en el navegador: http://localhost/tienda/
+
+ESTRUCTURA
+tienda/
+  index.php          Página de inicio (menú)
+  acerca.php         Opción 1: Acerca de
+  mostrar.php        Opción 2: Mostrar por marca o todos + botones Actualizar/Eliminar
+  actualizar.php     Formulario con los datos del producto a modificar
+  p_actualizar.php   Proceso UPDATE
+  eliminar.php       Proceso DELETE
+  agregar.php        Opción 3: un solo formulario (producto + proveedor)
+  p_agregar.php      Proceso INSERT en proveedor y productos
+  includes/conexion.php   Conexión PDO a la BD semestral
+  includes/header.php     Encabezado y menú (se repite en todas las páginas)
+  includes/footer.php     Pie de página
+  css/estilos.css    Hoja de estilos
+  sql/semestral.sql  Script de la base de datos
